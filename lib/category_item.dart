@@ -8,9 +8,14 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       padding: const EdgeInsets.all(15),
-      child: Text(title),
+      child: Text(
+        title,
+        style: theme.textTheme.headline6,
+      ),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [color.withOpacity(0.7), color],
