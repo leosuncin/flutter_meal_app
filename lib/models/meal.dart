@@ -6,10 +6,22 @@ enum Complexity {
   Hard,
 }
 
+extension ParseComplexityToString on Complexity {
+  String getLabel() {
+    return this.toString().split('.').last;
+  }
+}
+
 enum Affordability {
   Affordable,
   Pricey,
   Luxurious,
+}
+
+extension ParseAffordabilityToString on Affordability {
+  String getLabel() {
+    return this.toString().split('.').last;
+  }
 }
 
 class Meal {
