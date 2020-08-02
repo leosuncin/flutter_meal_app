@@ -48,14 +48,14 @@ class MainDrawer extends StatelessWidget {
             Icons.restaurant,
             'Meals',
             () {
-              Navigator.pushNamed(context, '/');
+              Navigator.pushReplacementNamed(context, '/');
             },
           ),
           buildDrawerItem(
             Icons.settings,
             'Filters',
             () {
-              Navigator.pushNamed(context, FilterScreen.routeName);
+              Navigator.pushReplacementNamed(context, FilterScreen.routeName);
             },
           ),
         ],
