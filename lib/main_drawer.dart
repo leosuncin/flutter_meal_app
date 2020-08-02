@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'filter_screen.dart';
+
 class MainDrawer extends StatelessWidget {
   Widget buildDrawerItem(IconData icon, String title, Function onTap) {
     return ListTile(
@@ -52,7 +54,9 @@ class MainDrawer extends StatelessWidget {
           buildDrawerItem(
             Icons.settings,
             'Filters',
-            () {},
+            () {
+              Navigator.pushNamed(context, FilterScreen.routeName);
+            },
           ),
         ],
       ),
