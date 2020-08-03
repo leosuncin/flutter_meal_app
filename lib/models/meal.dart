@@ -54,4 +54,12 @@ class Meal {
     @required this.isVegan,
     @required this.isVegetarian,
   });
+
+  @override
+  bool operator ==(other) {
+    return other is Meal && id == other.id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }

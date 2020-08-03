@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
     'lactose': false,
   };
   List<Meal> _availableMeals = DUMMY_MEALS;
+  Set<Meal> _favoriteMeals = Set();
 
   void _setFilters(Map<String, bool> filterData) {
     setState(() {
@@ -40,6 +41,25 @@ class _MyAppState extends State<MyApp> {
       }).toList();
     });
   }
+
+  void _toggleFavorite(String mealId) {
+    var meal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
+    setState(() {
+      print(meal.id);
+      print(_favoriteMeals.contains(meal));
+
+      if (_favoriteMeals.contains(meal)) {
+        _favoriteMeals.remove(meal);
+      } else {
+        _favoriteMeals.add(meal);
+      }
+
+      print(_favoriteMeals.length);
+    });
+  }
+
+  bool _isFavoriteMeal(String mealId) =>
+      _favoriteMeals.any((meal) => meal.id == mealId);
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +93,12 @@ class _MyAppState extends State<MyApp> {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: TabsScreen(),
+      home: TabsScreen(_favoriteMeals),
       routes: {
         CategoryMealsScreen.routeName: (context) =>
             CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.routeName: (context) => MealDetailScreen(),
+        MealDetailScreen.routeName: (context) =>
+            MealDetailScreen(_toggleFavorite, _isFavoriteMeal),
         FilterScreen.routeName: (context) => FilterScreen(
               _setFilters,
               glutenFree: _filters['gluten'],
